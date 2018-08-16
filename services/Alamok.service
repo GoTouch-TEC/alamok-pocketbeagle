@@ -1,0 +1,10 @@
+[Unit]
+Description=Alamok
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/opt/Alamok-Setup/scripts/Alamok.sh
+
+[Install]
+WantedBy=multi-user.target

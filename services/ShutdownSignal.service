@@ -1,0 +1,11 @@
+[Unit]
+Description= Shutdown signal to the arduino
+
+[Service]
+Type=oneshot
+ExecStart=/bin/true
+RemainAfterExit=true
+ExecStop=/opt/Alamok-Setup/scripts/ShutdownSignal.sh
+
+[Install]
+WantedBy=multi-user.target

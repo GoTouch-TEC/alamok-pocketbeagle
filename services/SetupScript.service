@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Scripts at Start and Stop
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/opt/Alamok-Setup/scripts/Setup.sh
+KillMode=none
+
+[Install]
+WantedBy=multi-user.target
