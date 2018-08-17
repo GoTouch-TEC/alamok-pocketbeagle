@@ -4,19 +4,24 @@ import time
 import os
 import json
 
+# Pins setup
 GPIO.setup("P1_35", GPIO.IN)
 GPIO.setup("P1_33", GPIO.OUT)
 GPIO.output("P1_33", GPIO.LOW)
 GPIO.add_event_detect("P1_35", GPIO.FALLING)
-running = True
+
+# Flags for the reset/turnoff button
 lastState = False
 buttonPressed = False
 lastTimePressed = time.time()
+
+
+Serial port Setup
 ser = serial.Serial(port = "/dev/ttyO2", baudrate=9600)
 ser.close()
 ser.open()
-shutdown_pending=False
 
+# checks for the system's initial state
 while(True):
     if ser.isOpen():
         try:
@@ -31,31 +36,14 @@ while(True):
             print("Error",error)
             time.sleep(1)
 
-while(True):
-    # reescribir la funcion de deteccion de apagado
 
-    # if(GPIO.event_detected("P1_35")):
-    #     GPIO.output("P1_33", GPIO.HIGH)
-    #     cont = 0
-    #     for n in range(40):
-    #         time.sleep(0.1)
-    #         if(not GPIO.input("P1_35")):
-    #             cont+=1
-    #         else:
-    #             break
-    #     # GPIO.cleanup()
-    #     if(cont>=20):
-    #         print("shutdown")
-    #         os.system("shutdown -P now")
-    #         break
-    #     else:
-    #         print("reboot:")
-    #         os.system("shutdown -r now")
-    #         break
-    #     running=False
+while(True):
+    # checks if the button has been pressed
     if(GPIO.event_detected("P1_35")):
         lastTimePressed = time.time();
         buttonPressed = True;
+
+    # checks if the button has been released
     elif(buttonPressed and GPIO.input("P1_35")):
         buttonPressed = False;
         if(time.time() - lastTimePressed > 4):
@@ -73,6 +61,7 @@ while(True):
 
     if ser.isOpen():
         try:
+            # checks the system's USB charging status
             ser.write(b'USB')
             datos =str(ser.readline())
             print(datos)
@@ -86,10 +75,6 @@ while(True):
                     os.system("poweroff")
                     break
                     shutdown_pending=True
-                # elif(data['value'] and shutdown_pending):
-                #     print("canceled")
-                #     os.system("shutdown -c")
-                #     GPIO.output("P1_33", GPIO.LOW)
         except Exception as error:
             print("Error",error)
             time.sleep(2)
