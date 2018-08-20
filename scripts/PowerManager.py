@@ -16,7 +16,7 @@ buttonPressed = False
 lastTimePressed = time.time()
 
 
-Serial port Setup
+# Serial port Setup
 ser = serial.Serial(port = "/dev/ttyO2", baudrate=9600)
 ser.close()
 ser.open()
