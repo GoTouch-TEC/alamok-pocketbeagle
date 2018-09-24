@@ -5,6 +5,7 @@ Description=Alamok
 Type=oneshot
 RemainAfterExit=true
 ExecStart=/opt/Alamok-Setup/scripts/Alamok.sh
+After=SetupScript.service
 
 [Install]
 WantedBy=multi-user.target

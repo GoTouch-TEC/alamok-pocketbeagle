@@ -4,6 +4,7 @@ Description= Shutdown signal to the arduino
 [Service]
 Type=oneshot
 ExecStart=/opt/Alamok-Setup/scripts/PowerManager.sh
+After=SetupScript.service
 
 [Install]
 WantedBy=multi-user.target

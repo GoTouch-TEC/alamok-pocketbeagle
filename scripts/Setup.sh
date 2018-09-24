@@ -12,6 +12,6 @@ config-pin p1.35 in
 config-pin  p2.18 hi
 config-pin  p2.6 hi
 config-pin  p2.4 in
-
+killall gpsd
 /usr/sbin/gpsd /dev/ttyS1 -F /var/run/gpsd.sock
 pon fona

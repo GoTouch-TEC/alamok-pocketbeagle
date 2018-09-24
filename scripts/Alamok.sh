@@ -1,3 +1,2 @@
 #!/bin/bash
-cd /home/debian/alamok/
-python3 -O Alamok.py -c ../mqtt_defaults.json -o ../Alamok.db
+ python3 -O /home/debian/alamok/Alamok.py -c /home/debian/mqtt_defaults.json -o /home/debian/Alamok.db

@@ -15,7 +15,7 @@ lastState = False
 buttonPressed = False
 lastTimePressed = time.time()
 
-
+# time.sleep(1000)
 # Serial port Setup
 ser = serial.Serial(port = "/dev/ttyO2", baudrate=9600)
 ser.close()
@@ -46,7 +46,7 @@ while(True):
     # checks if the button has been released
     elif(buttonPressed and GPIO.input("P1_35")):
         buttonPressed = False;
-        if(time.time() - lastTimePressed > 4):
+        if((time.time() - lastTimePressed )> 4):
             print("shutdown")
             GPIO.output("P1_33", GPIO.HIGH)
             ser.close()
@@ -74,7 +74,7 @@ while(True):
                     ser.close()
                     os.system("poweroff")
                     break
-                    shutdown_pending=True
         except Exception as error:
             print("Error",error)
             time.sleep(2)
+    time.sleep(0.1)
