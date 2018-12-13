@@ -36,13 +36,13 @@ while(True):
             print("Error",error)
             time.sleep(1)
 
+# TODO: Cambiar los 4 segundos por una Constante
 
 while(True):
     # checks if the button has been pressed
     if(GPIO.event_detected("P1_35")):
         lastTimePressed = time.time();
         buttonPressed = True;
-
     # checks if the button has been released
     elif(buttonPressed and GPIO.input("P1_35")):
         buttonPressed = False;

@@ -1,5 +1,4 @@
-#! /bin/bash
-#! /bin/bash
+#!/bin/bash
 config-pin P1.08 uart
 config-pin P1.10 uart
 config-pin p1.33 gpio
